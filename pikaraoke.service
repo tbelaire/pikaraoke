@@ -11,7 +11,9 @@ After=sound.target
 
 [Service]
 Type=simple
+User=pi
 #StandardInput=tty
+Environment="DISPLAY=:0"
 StandardOutput=tty
 ExecStart=/usr/bin/python3 /home/pi/pikaraoke/app.py --download-path /home/pi/pikaraoke_songs  --log-level 0 --hide-splash-screen
 
