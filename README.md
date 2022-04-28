@@ -181,6 +181,20 @@ If you want to kill the pikaraoke process, you can do so from the PiKaraoke Web 
 
 Note that if your wifi/network is inactive pikaraoke will error out 10 seconds after being launched. This is to prevent the app from hijacking your ability to login to repair the connection.
 
+### Auto-start using SystemD
+
+There is a systemd unit file, pikaraoke.service, which if installed to system-d's library, will allow you to add it as a target.
+
+```
+$ sudo cp pikaraoke.service /lib/systemd/system/pikaraoke.service
+$ sudo systemctl enable pikaraoke.service # Sets it to launch at boot.
+$ sudo systemctl start pikaraoke.service  # Starts it right now.
+$ sudo systemctl status pikaraoke.service # See if it's running.
+$ sudo journalctl -u pikaraoke.service    # View the logs
+```
+
+This can run as the standard `pi` user, avoiding the need to patch vlc to run as root.
+
 ## Usage
 
 Here is the full list of command line arguments on OSX as an example (may not be up to date, run `python3 app.py --help` for the latest):
